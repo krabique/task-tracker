@@ -3,6 +3,15 @@
 <p><strong>member since:</strong> <%= @user.created_at %></p>
 <p><strong>last seen:</strong> <%= @user.last_sign_in_at %></p>
 
+<p>
+  <strong>role:</strong>
+    <% if @user.manager_role? %>
+      Manager
+    <% else %>
+      Developer
+    <% end %>
+</p>
+
 <% if @user == current_user %>
   <%= link_to((raw '<i class="fa fa-pencil-square-o" aria-hidden="true">
   </i> Edit profile'), edit_user_registration_path) %>
@@ -10,4 +19,3 @@
   <%= link_to((raw '<i class="fa fa-pencil-square-o" aria-hidden="true">
   </i> Edit profile'), edit_user_path(@user)) %>
 <% end %>
-

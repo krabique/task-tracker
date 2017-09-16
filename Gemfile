@@ -46,6 +46,8 @@ gem 'simple_form', '~> 3.5'
 gem 'jquery-rails'
 # For bootstrap exception
 gem 'popper_js'
+# For authorizations
+gem 'cancancan'
 # -- My -- end -------------------------------------
 
 group :development, :test do

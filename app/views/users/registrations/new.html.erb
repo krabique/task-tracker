@@ -8,6 +8,7 @@
   <%= f.input :email %>
   <%= f.input :password, autocomplete: "off" %>
   <%= f.input :password_confirmation, autocomplete: "off" %>
+  <%= f.input :manager_role, label: (raw "&nbsp;I am a <strong>Manager</strong>!") %>
 
   <%= f.button :submit, 'Sign up' %>
 <% end %>
