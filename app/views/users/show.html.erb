@@ -1,0 +1,13 @@
+<h3><%= @user.name %>'s profile</h3>
+<p><strong>email:</strong> <%= @user.email %></p>
+<p><strong>member since:</strong> <%= @user.created_at %></p>
+<p><strong>last seen:</strong> <%= @user.last_sign_in_at %></p>
+
+<% if @user == current_user %>
+  <%= link_to((raw '<i class="fa fa-pencil-square-o" aria-hidden="true">
+  </i> Edit profile'), edit_user_registration_path) %>
+<% elsif can? :manage, User %>
+  <%= link_to((raw '<i class="fa fa-pencil-square-o" aria-hidden="true">
+  </i> Edit profile'), edit_user_path(@user)) %>
+<% end %>
+

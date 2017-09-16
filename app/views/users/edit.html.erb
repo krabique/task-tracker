@@ -1,0 +1,12 @@
+<h2>Edit <%= @user.name %></h2>
+
+<p><strong>name</strong>: <%= @user.name %></p>
+<p><strong>email</strong>: <%= @user.email %></p>
+
+
+<%= simple_form_for(@user) do |f| %>
+  <%= f.input :approved %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to (fa_icon "arrow-left", text: 'Back'), :back %>
