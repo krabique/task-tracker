@@ -5,7 +5,22 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :status, :collection => @task_status_options %>
-    <%= f.association :user %>
+    
+    <%= f.label nil, "This task's developer:" %>
+    <input type="text" id="form-users-list-search" class="form-control"
+      placeholder="filter users">  
+    <p>
+      <div class="list-group form-users-list">
+        <% @project.users.each do |user| %>
+          <div class="list-group-item">
+            <%= radio_button_tag "task[user_id]", user.id, 
+              task.user == user, class: "form-users-list-item",
+                id: user.name %>
+            <%= user.name %>
+          </div>
+        <% end %>
+      </div>
+    </p>
   </div>
 
   <div class="form-actions">
