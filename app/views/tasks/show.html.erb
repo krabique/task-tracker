@@ -16,14 +16,18 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @task.user %>
+  <strong>Developer:</strong>
+  <% if @task.user %>
+    <%= link_to @task.user.name, @task.user %>
+  <% else %>
+    none
+  <% end %>
 </p>
 
 <p>
   <strong>Project:</strong>
-  <%= @task.project %>
+  <%= link_to @task.project.title, @task.project %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Edit', edit_project_task_path(@project, @task) %> |
+<%= link_to 'Back', project_path %>

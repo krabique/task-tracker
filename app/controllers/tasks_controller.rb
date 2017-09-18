@@ -6,23 +6,22 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
   end
 
   def edit
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.new(task_params)
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
     else
       render :new
     end
   end
 
   def update
-    if @task.update(task_params)
+    if @task.update(update_task_params)
       redirect_to @task, notice: 'Task was successfully updated.'
     else
       render :edit
@@ -38,7 +37,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :description, :status, :user_id, :project_id)
+    params.require(:task).permit(:title, :description, :status, :user_id)
   end
   
 end
