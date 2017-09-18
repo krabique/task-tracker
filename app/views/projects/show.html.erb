@@ -16,8 +16,10 @@
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
 
+<hr>
+
 <h3 class="text-center">This project's tasks</h3>
-<% if @project.tasks.exists? %>
+<% unless @project.tasks.empty? %>
   <div class="list-group projects-list">
     <% @project.tasks.each do |task| %>
       <%= link_to(task.title, project_task_path(@project, task), :class => "list-group-item") %>
@@ -29,3 +31,19 @@
 <%= link_to (raw '<i class="fa fa-plus-circle" aria-hidden="true">
   </i> Create new task'), new_project_task_path(@project, @task) if 
   (can? :manage, Task) %>
+
+<hr>
+
+<h3 class="text-center">This project's developers</h3>
+<% unless @project.users.empty? %>
+  <div class="list-group projects-list">
+    <% @project.users.each do |user| %>
+      <%= link_to(user.name, user, :class => "list-group-item") %>
+    <% end %>
+  </div>
+<% else %>
+  <h5 class="text-center">This project has no developers!</h5>
+<% end %>
+<%= link_to (raw '<i class="fa fa-plus-circle" aria-hidden="true">
+  </i> Add a developer'), edit_project_path if 
+  (can? :manage, Project) %>
