@@ -19,10 +19,13 @@
 <hr>
 
 <h3 class="text-center">This project's tasks</h3>
+<input type="checkbox" id="current-user-task-filter-checkbox" 
+  data-user-id="<%= current_user.id %>"> Show my tasks only
 <% unless @project.tasks.empty? %>
-  <div class="list-group projects-list">
+  <div class="list-group projects-list" id="projects-tasks-list">
     <% @project.tasks.each do |task| %>
-      <%= link_to(task.title, project_task_path(@project, task), :class => "list-group-item") %>
+      <%= link_to(task.title, project_task_path(@project, task), :class => "list-group-item",
+        "data-user-id" => task.user_id) %>
     <% end %>
   </div>
 <% else %>
