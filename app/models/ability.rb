@@ -28,5 +28,10 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    
+    # TO_DO proper authorizations
+    user ||= User.new
+    can :manage, :all
+    
   end
 end

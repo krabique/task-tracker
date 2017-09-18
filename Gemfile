@@ -48,6 +48,8 @@ gem 'jquery-rails'
 gem 'popper_js'
 # For authorizations
 gem 'cancancan'
+# For icons
+gem "font-awesome-rails"
 # -- My -- end -------------------------------------
 
 group :development, :test do

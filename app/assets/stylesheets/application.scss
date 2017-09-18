@@ -16,7 +16,15 @@
  */
  
 @import "bootstrap";
+@import "font-awesome";
 
 .card {
   margin-top: 10px;
+}
+
+.projects-list {
+  max-width: 30em;
+  margin: 0 auto;
+  max-height:150px;
+  overflow-y: auto;
 }

@@ -1,1 +1,17 @@
-Hi!
+<% if current_user %>
+  <h3 class="text-center">My Projects</h3>
+  <% if @projects.exists? %>
+    <div class="list-group projects-list">
+      <% @projects.each do |project| %>
+        <%= link_to(project.title, project, :class => "list-group-item") %>
+      <% end %>
+    </div>
+  <% else %>
+    <h5 class="text-center">You have no projects!</h5>
+  <% end %>
+  <%= link_to (raw '<i class="fa fa-plus-circle" aria-hidden="true">
+    </i> Create new project'), new_project_path if 
+    (can? :manage, Project) %>
+<% else %>
+  <p class="text-center">Please, log in or sign up to access the task tracker.</p>
+<% end %>
