@@ -10,6 +10,7 @@
   
   <input type="text" id="form-users-list-search" class="form-control"
     placeholder="filter users">  
+  <p id="selected-users-paragraph"></p>
   <p>
     <div class="list-group form-users-list">
       <% User.where(developer_role: true).each do |user| %>
@@ -22,6 +23,7 @@
       <% end %>
     </div>
   </p>
+  
   
 
   <div class="form-actions">

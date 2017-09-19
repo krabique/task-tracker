@@ -19,6 +19,7 @@
 //= require_tree .
 
 $(document).ready( function(){
+  
   $('#form-users-list-search').on('keyup', function() {
   var query = this.value.toLowerCase();
     $('.form-users-list-item').each(function(i, elem) {
@@ -29,4 +30,32 @@ $(document).ready( function(){
       }
     });
   });  
+  
+  function showChosenUsers() {
+    $('#selected-users-paragraph').empty();
+    $('.form-users-list-item').each(function(i, elem) {
+      if (elem.checked) {
+        $('#selected-users-paragraph').append( 
+          '<div class="chosen-user" value="' + $(this).val() + '">' + $(this).prop('id') + '</div>'
+        );
+      }
+    });    
+  }
+  
+  showChosenUsers();
+  
+  $('.form-users-list-item:checkbox').click(function () {  
+    showChosenUsers();
+  });
+  
+  $(document).delegate('.chosen-user', 'click', function(){
+    let clicked_user_id_value = $(this).attr("value");
+    $(".form-users-list-item").each(function (i, elem) {
+      if ( $(this).prop('value') === clicked_user_id_value ) {
+        $(this).attr('checked', false);
+        showChosenUsers();
+      }
+    });
+  });
+  
 });
