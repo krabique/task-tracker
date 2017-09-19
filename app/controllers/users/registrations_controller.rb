@@ -12,7 +12,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if params[:user][:manager_role] != "1"
       params[:user].merge!(developer_role: "1")
     elsif params[:user][:manager_role] == "1" && params[:user][:developer_role] == "1"
-      render :new, alert: "Only one role is allowed."
+      flash[:alert] = 'Only one role is allowed.'
+      render :new
     end
     super
   end
