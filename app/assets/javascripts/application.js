@@ -44,7 +44,7 @@ $(document).ready( function(){
   
   showChosenUsers();
   
-  $('.form-users-list-item:checkbox').click(function () {  
+  $('.form-users-list-item:checkbox, .form-users-list-item:radio').click(function () {  
     showChosenUsers();
   });
   
