@@ -1,0 +1,44 @@
+<% unless @task.comments.empty? %>
+  <h3 class="text-center">This task's comments</h3>
+  <table class="table table-striped">
+    <tbody id="<%= @task.id %>-comments-table-tbody">
+      <% @task.comments.each do |comment| %>
+        <tr>
+          <td>
+            <%= link_to comment.user.name, comment.user %>
+            commented at <%= comment.created_at %>
+            <div class="card">
+              <div class="card-body">
+                <%= comment.body %>
+              </div>
+            </div>
+          </td>
+          <td class="comments-controls-table-row">
+            <ul class="comments-controls-list">
+              <li>
+                <%= link_to (raw '<i class="fa fa-pencil" aria-hidden="true">
+                  </i>'), edit_project_task_comment_path(@project, 
+                  @task, comment) if (can? :manage, Comment) || 
+                  comment.creator == current_user.id %>
+              </li>
+              <li>
+                <%= link_to (raw '<i class="fa fa-times" aria-hidden="true">
+                  </i>'), project_task_comment_path(@project, 
+                  @task, comment), method: :delete, data: { confirm: 
+                  'Are you sure?' } if can? :manage, Comment %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h4 class="text-center">No comments!</h4>
+<% end %>
+
+<% if can? :new, Comment %>
+  <h5>Add a new comment:</h5>
+  <%= render 'comments/form', comment: Comment.new, project: @project, 
+    task: @task %>
+<% end %>
