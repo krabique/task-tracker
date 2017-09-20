@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @new_task = Task.new(project: @project)
   end
 
   def new
