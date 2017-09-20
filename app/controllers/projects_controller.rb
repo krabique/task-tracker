@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @projects = Project.all
+    @projects = Project.includes(:user).all
   end
 
   def show
