@@ -62,6 +62,8 @@ class TasksController < ApplicationController
     begin
       if cannot? :assign_user_to_task, Task
         @task = @project.tasks.create! task_params.merge(user: current_user)
+      else
+        @task = @project.tasks.create! task_params
       end
       return true
     rescue ActiveRecord::RecordInvalid
