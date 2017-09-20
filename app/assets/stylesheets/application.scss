@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require toastr
+ *= require bootsy
  *= require_tree .
  *= require_self
  */
@@ -45,4 +46,8 @@
     .navbar-brand {
       font-size: 1rem;
     }
+}
+
+.wysihtml5-sandbox {
+  height: auto !important;
 }

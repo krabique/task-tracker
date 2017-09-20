@@ -50,6 +50,8 @@ gem 'popper_js'
 gem 'cancancan'
 # For icons
 gem "font-awesome-rails"
+# For wysiwyg
+gem 'bootsy'
 # -- My -- end -------------------------------------
 
 group :development, :test do

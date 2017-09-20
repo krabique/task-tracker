@@ -9,7 +9,7 @@
             commented at <%= comment.created_at %>
             <div class="card">
               <div class="card-body">
-                <%= comment.body %>
+                <%= sanitize comment.body, tags: %w(h1 h2 h3 span b i u), attributes: %w(class) %>
               </div>
             </div>
           </td>

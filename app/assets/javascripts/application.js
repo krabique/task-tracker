@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require toastr
+//= require bootsy
 //= require_tree .
 
 $(document).ready( function(){
