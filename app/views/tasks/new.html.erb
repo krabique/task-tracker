@@ -2,4 +2,4 @@
 
 <%= render 'form', task: @task, project: @project %>
 
-<%= link_to 'Back', project_path(@project) %>
+<%= link_to (fa_icon "arrow-left", text: 'Back to project'), project_path(@project) %>

@@ -13,8 +13,9 @@
   <%= link_to @project.user.name, @project.user %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) if can? :edit, @project %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to (fa_icon "pencil-square-o", text: 'Edit project'), edit_project_path(@project) if can? :edit, @project %>
+<br>
+<%= link_to (fa_icon "arrow-left", text: 'Back'), projects_path %>
 
 <hr>
 
