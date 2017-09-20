@@ -3,13 +3,6 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :task, through: :project
   load_and_authorize_resource :comment, through: :task
   
-  def index
-    @comments = Comment.all
-  end
-
-  def show
-  end
-
   def new
   end
 
