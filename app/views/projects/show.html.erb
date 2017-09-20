@@ -16,7 +16,7 @@
 <%= link_to (fa_icon "pencil-square-o", text: 'Edit project'), 
   edit_project_path(@project) if can? :edit, @project %>
 <br>
-<%= link_to (fa_icon "arrow-left", text: 'Back'), :back %>
+<%= link_to (fa_icon "arrow-left", text: 'Back'), projects_path %>
 
 <hr>
 
