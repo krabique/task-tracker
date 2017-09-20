@@ -27,10 +27,18 @@
   (can? :filter_tasks, Project) %>
 
 <% unless @project.tasks.empty? %>
+  <p style="display: inline">
+    Color statuses:
+    <div style="display: inline" class='status-waiting'>waiting</div>
+    <div style="display: inline" class='status-implementation'>implementation</div> 
+    <div style="display: inline" class='status-verifying'>verifying</div>
+    <div style="display: inline" class='status-releasing'>releasing</div>
+  </p>
   <div class="list-group projects-list" id="projects-tasks-list">
     <% @project.tasks.each do |task| %>
-      <%= link_to(task.title, project_task_path(@project, task), class: "list-group-item",
-        "data-user-id": task.user_id) %>
+
+      <%= link_to_task_with_status_color(task.title, project_task_path(@project, task), 
+        task.status, task.user_id) %>
     <% end %>
   </div>
 <% else %>

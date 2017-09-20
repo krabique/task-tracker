@@ -7,3 +7,19 @@
   height: 10em;
   overflow-y: auto;
 }
+
+.status-waiting {
+  color: red;
+}
+
+.status-implementation {
+  color: #CA6F1E;
+}
+
+.status-verifying {
+  color: #8E44AD;
+}  
+
+.status-releasing {
+  color: green;
+}
