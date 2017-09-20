@@ -22,7 +22,7 @@
 <% if @projects.exists? %>
   <div class="list-group projects-list">
     <% @projects.each do |project| %>
-      <%= link_to(project.title, project, :class => "list-group-item") %>
+      <%= link_to(project.title, project, class:  "list-group-item") %>
     <% end %>
   </div>
 <% else %>

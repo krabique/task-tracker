@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <div class="container">
         <%= link_to("World's Best Task Tracker App", root_path, 
-            :class => "navbar-brand") %>
+            class:  "navbar-brand") %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarsExample03">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <%= link_to 'All projects', projects_path, :class => "nav-link" %>
+              <%= link_to 'All projects', projects_path, class: "nav-link" %>
             </li>            
             <li class="nav-item active">
               <% if user_signed_in? %>
@@ -52,20 +52,20 @@
               <% if user_signed_in? %>
                 <li class="nav-item active">
                   <%= link_to("Hi, #{current_user.name}", current_user, 
-                    :class => "nav-link") %>
+                    class:  "nav-link") %>
                 </li>
                 <li class="nav-item active">
                   <%= link_to('Logout', destroy_user_session_path, 
-                    :method => :delete, :class => "nav-link") %>
+                    method: :delete, class: "nav-link") %>
                 </li>
               <% else %>
                 <li class="nav-item active">
                   <%= link_to('Login', new_user_session_path, 
-                    :class => "nav-link") %>
+                    class:  "nav-link") %>
                 </li>
                 <li class="nav-item active">
                   <%= link_to('Register', new_user_registration_path, 
-                    :class => "nav-link")  %>
+                    class:  "nav-link")  %>
                 </li>
               <% end %>
           </ul>
