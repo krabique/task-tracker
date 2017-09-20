@@ -17,3 +17,14 @@
 <% end %>
 <br>
 <%= link_to (fa_icon "arrow-left", text: 'Back'), :back %>
+
+<h3 class="text-center"><%= @user.name %>'s projects</h3>
+<% if @projects.exists? %>
+  <div class="list-group projects-list">
+    <% @projects.each do |project| %>
+      <%= link_to(project.title, project, :class => "list-group-item") %>
+    <% end %>
+  </div>
+<% else %>
+  <h5 class="text-center"><%= @user.name %> has no projects!</h5>
+<% end %>
