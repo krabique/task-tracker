@@ -34,7 +34,7 @@
   <h4 class="text-center">No comments!</h4>
 <% end %>
 
-<% if can? :new, Comment %>
+<% if can? :new, @new_comment %>
   <h5>Add a new comment:</h5>
-  <%= render 'comments/form', comment: Comment.new, project: @project, task: @task %>
+  <%= render 'comments/form', comment: @new_comment, project: @project, task: @task %>
 <% end %>

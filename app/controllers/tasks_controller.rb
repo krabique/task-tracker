@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   before_action :task_status_options, only: [:new, :edit]
 
   def show
+    @new_comment = Comment.new(task: @task)
   end
 
   def new
