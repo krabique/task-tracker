@@ -27,7 +27,7 @@
   <%= link_to @task.project.title, @task.project %>
 </p>
 
-<%= link_to 'Edit', edit_project_task_path(@project, @task) %> |
+<%= link_to 'Edit', edit_project_task_path(@project, @task) if can? :edit, @task%> |
 <%= link_to 'Back', project_path(@project) %>
 
 <br><br>

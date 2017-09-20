@@ -13,8 +13,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = @project.tasks.new(task_params)
-    if @task.save
+    if safe_create_task
       redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
     else
       render :new
@@ -41,12 +40,36 @@ class TasksController < ApplicationController
     @task_status_options = %w[waiting implementation verifying releasing]
   end
   
-  def task_params
-    if task_status_options.include? params[:task][:status]
-      params.require(:task).permit(:title, :description, :status, :user_id)
-    else
-      params.require(:task).permit(:title, :description, :user_id)
+  def base_permitted_task_params
+    [ :title, :description ]
+  end
+  
+  def authorized_permitted_task_params
+    :user_id if can? :assign_user_to_task, @task || params[:task][:user_id] == current_user.id
+  end
+  
+  def valid_status_permitted_task_params
+    :status if task_status_options.include? params[:task][:status]
+  end
+  
+  def full_permitted_task_params
+    base_permitted_task_params << 
+      [ authorized_permitted_task_params, valid_status_permitted_task_params ]
+  end
+  
+  def safe_create_task
+    begin
+      if cannot? :assign_user_to_task, Task
+        @task = @project.tasks.create! task_params.merge(user: current_user)
+      end
+      return true
+    rescue ActiveRecord::RecordInvalid
+      return false
     end
+  end  
+  
+  def task_params
+    params.require(:task).permit(full_permitted_task_params)
   end
   
 end

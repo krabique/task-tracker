@@ -18,14 +18,13 @@
               <li>
                 <%= link_to (raw '<i class="fa fa-pencil" aria-hidden="true">
                   </i>'), edit_project_task_comment_path(@project, 
-                  @task, comment) if (can? :manage, Comment) || 
-                  comment.creator == current_user.id %>
+                  @task, comment) if can? :edit, comment %>
               </li>
               <li>
                 <%= link_to (raw '<i class="fa fa-times" aria-hidden="true">
                   </i>'), project_task_comment_path(@project, 
                   @task, comment), method: :delete, data: { confirm: 
-                  'Are you sure?' } if can? :manage, Comment %>
+                  'Are you sure?' } if can? :destroy, comment %>
               </li>
             </ul>
           </td>
@@ -39,6 +38,5 @@
 
 <% if can? :new, Comment %>
   <h5>Add a new comment:</h5>
-  <%= render 'comments/form', comment: Comment.new, project: @project, 
-    task: @task %>
+  <%= render 'comments/form', comment: Comment.new, project: @project, task: @task %>
 <% end %>

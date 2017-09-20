@@ -13,7 +13,7 @@
   <%= link_to @project.user.name, @project.user %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Edit', edit_project_path(@project) if can? :edit, @project %> |
 <%= link_to 'Back', projects_path %>
 
 <hr>
@@ -22,7 +22,7 @@
 
 <%= check_box_tag('current-user-task-filter-checkbox', 1, false, 
   data: { "user-id": current_user.id }) + ' Show my tasks only' if
-  (current_user.developer_role?) %>
+  (can? :filter_tasks, Project) %>
 
 <% unless @project.tasks.empty? %>
   <div class="list-group projects-list" id="projects-tasks-list">
@@ -36,7 +36,7 @@
 <% end %>
 <%= link_to (raw '<i class="fa fa-plus-circle" aria-hidden="true">
   </i> Create new task'), new_project_task_path(@project, @task) if 
-  (can? :manage, Task) %>
+  (can? :new, Task) %>
 
 <hr>
 
@@ -52,4 +52,4 @@
 <% end %>
 <%= link_to (raw '<i class="fa fa-plus-circle" aria-hidden="true">
   </i> Add a developer'), edit_project_path if 
-  (can? :manage, Project) %>
+  (can? :edit, Project) %>
