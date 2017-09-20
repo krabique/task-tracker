@@ -13,6 +13,5 @@
 </p>
 
 <% if @user == current_user %>
-  <%= link_to((raw '<i class="fa fa-pencil-square-o" aria-hidden="true">
-  </i> Edit profile'), edit_user_registration_path) %>
+  <%= link_to (fa_icon "pencil-square-o", text: 'Edit profile'), edit_user_registration_path %>
 <% end %>

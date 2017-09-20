@@ -35,9 +35,8 @@
 <% else %>
   <h5 class="text-center">This project has no tasks!</h5>
 <% end %>
-<%= link_to (raw '<i class="fa fa-plus-circle" aria-hidden="true">
-  </i> Create new task'), new_project_task_path(@project, @task) if 
-  (can? :new, Task) %>
+<%= link_to (fa_icon "plus-circle", text: 'Create new task'), 
+  new_project_task_path(@project, @task) if (can? :new, Task) %>
 
 <hr>
 
@@ -51,6 +50,5 @@
 <% else %>
   <h5 class="text-center">This project has no developers!</h5>
 <% end %>
-<%= link_to (raw '<i class="fa fa-plus-circle" aria-hidden="true">
-  </i> Add a developer'), edit_project_path if 
+<%= link_to (fa_icon "plus-circle", text: 'Add a developer'), edit_project_path if 
   (can? :edit, Project) %>

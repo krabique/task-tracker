@@ -16,15 +16,13 @@
           <td class="comments-controls-table-row">
             <ul class="comments-controls-list">
               <li>
-                <%= link_to (raw '<i class="fa fa-pencil" aria-hidden="true">
-                  </i>'), edit_project_task_comment_path(@project, 
-                  @task, comment) if can? :edit, comment %>
+                <%= link_to (fa_icon "pencil"),
+                  edit_project_task_comment_path(@project, @task, comment) if 
+                  can? :edit, comment %>
               </li>
               <li>
-                <%= link_to (raw '<i class="fa fa-times" aria-hidden="true">
-                  </i>'), project_task_comment_path(@project, 
-                  @task, comment), method: :delete, data: { confirm: 
-                  'Are you sure?' } if can? :destroy, comment %>
+                <%= link_to (fa_icon "times"), project_task_comment_path(@project, @task, comment),
+                  method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, comment %>
               </li>
             </ul>
           </td>
