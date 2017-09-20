@@ -37,7 +37,7 @@
   <h5 class="text-center">This project has no tasks!</h5>
 <% end %>
 <%= link_to (fa_icon "plus-circle", text: 'Create new task'), 
-  new_project_task_path(@project, @task) if (can? :new, Task) %>
+  new_project_task_path(@project, @task) if (can? :new, @task) %>
 
 <hr>
 
