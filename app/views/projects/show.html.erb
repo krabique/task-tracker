@@ -13,7 +13,8 @@
   <%= link_to @project.user.name, @project.user %>
 </p>
 
-<%= link_to (fa_icon "pencil-square-o", text: 'Edit project'), edit_project_path(@project) if can? :edit, @project %>
+<%= link_to (fa_icon "pencil-square-o", text: 'Edit project'), 
+  edit_project_path(@project) if can? :edit, @project %>
 <br>
 <%= link_to (fa_icon "arrow-left", text: 'Back'), projects_path %>
 
@@ -51,4 +52,4 @@
   <h5 class="text-center">This project has no developers!</h5>
 <% end %>
 <%= link_to (fa_icon "plus-circle", text: 'Add a developer'), edit_project_path if 
-  (can? :edit, Project) %>
+  (can? :edit, @project) %>
