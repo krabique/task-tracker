@@ -1,8 +1,11 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-body">
+      <%= link_to (fa_icon "plus-circle", text: 'Create new project'), new_project_path if 
+        (can? :manage, Project) %>
+      <h3 class="text-center">All projects</h3>
       <% unless @projects.empty? %>
-        <h3 class="text-center">All projects</h3>
+        
         <table class="table table-striped table-hover">
           <tbody>
             <tr>
