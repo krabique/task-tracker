@@ -58,6 +58,6 @@ quackerquacker
 ```
 ...or register your own! Although the approval email message could fail to arrive, so you might want to use `rails c` for
 ```
-User.last.confirmed_at Time.now
+User.last.update!(confirmed_at: Time.now)
 ```
 to approve your user's email and be able to log in.
