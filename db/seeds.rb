@@ -15,7 +15,9 @@ users_info = [
 ]
 
 users_info.each do |info|
-  User.new(info).skip_confirmation!.save!
+  u = User.new(info)
+  u.skip_confirmation!
+  u.save!
 end
 
 Project.create!([
