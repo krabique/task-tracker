@@ -16,6 +16,7 @@ rvm install ruby-2.4.2
 rvm gemset create task-tracker-rails514
 rvm 2.4.2@task-tracker-rails514
 gem install rails -v 5.1.4
+gem install bundle
 ```
 2. Clone the repo and install the gems
 ```
