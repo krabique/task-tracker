@@ -50,7 +50,7 @@ $(document).ready( function(){
   });
   
   $(document).delegate('.chosen-user', 'click', function(){
-    let clicked_user_id_value = $(this).attr("value");
+    var clicked_user_id_value = $(this).attr("value");
     $(".form-users-list-item").each(function (i, elem) {
       if ( $(this).prop('value') === clicked_user_id_value ) {
         $(this).attr('checked', false);
