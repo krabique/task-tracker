@@ -56,7 +56,7 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = %w( 0.0.0.0/0 ::/0 )
   
   # -- For devise mailer -- start --
-  config.action_mailer.default_url_options = { host: 'task-tracker-xen0n48.c9users.io', port: 3001 }
+  config.action_mailer.default_url_options = { host: 'task-tracker-xen0n48.c9users.io' }
   
   config.action_mailer.perform_caching = false 
   

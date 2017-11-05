@@ -90,7 +90,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   
   # -- For devise mailer -- start --
-  config.action_mailer.default_url_options = { host: 'agile-cove-39191.herokuapp.com', port: 3001 }
+  config.action_mailer.default_url_options = { host: 'agile-cove-39191.herokuapp.com' }
   
   config.action_mailer.perform_caching = false 
   
