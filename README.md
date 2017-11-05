@@ -16,12 +16,12 @@ rvm install ruby-2.4.2
 rvm gemset create task-tracker-rails514
 rvm 2.4.2@task-tracker-rails514
 gem install rails -v 5.1.4
-gem install bundle
 ```
 2. Clone the repo and install the gems
 ```
 git clone git@github.com:krabique48/task-tracker.git
 cd task-tracker
+gem install bundle
 bundle install
 ```
 3. Start postgresql and setup the database (and don't look at me if you encounter any problems with postgresql...)
