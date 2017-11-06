@@ -62,6 +62,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   # Automatically generates seeds, but doesn't work properly with HABTM relation
   gem 'seed_dump'
+  gem 'rubocop'
 end
 
 group :development do
