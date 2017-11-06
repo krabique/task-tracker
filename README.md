@@ -2,6 +2,10 @@
 
 The one and only, amaaazing TASK TRACKER! \*crowd chanting\*
 
+## Live preview
+
+Live preview is available at http://agile-cove-39191.herokuapp.com/
+
 ## Technology overview
 
 This app is built with ruby 2.4.2, rails 5.1.4 and utilizes Bootstrap 4-beta with FontAwesome icons for the web pages. The layout is fully compatible with any screen size. The database used is PostgreSQL. Authorizations and authentifications are made with `cancancan` and `devise` gems.
