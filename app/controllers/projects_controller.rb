@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   load_and_authorize_resource
 
@@ -9,11 +11,9 @@ class ProjectsController < ApplicationController
     @new_task = Task.new(project: @project)
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     if safe_create_project
@@ -34,25 +34,20 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to projects_url, notice: 'Project was successfully destroyed.' 
+    redirect_to projects_url, notice: 'Project was successfully destroyed.'
   end
-
 
   private
-  
+
   def project_params
     params.require(:project).permit(:title, :description, :user_id,
-      { :user_ids => [] }
-    )
+                                    user_ids: [])
   end
-  
+
   def safe_create_project
-    begin
-      @project = Project.create! project_params.merge(user: current_user)
-      return true
-    rescue ActiveRecord::RecordInvalid
-      return false
-    end
+    @project = Project.create! project_params.merge(user: current_user)
+    return true
+  rescue ActiveRecord::RecordInvalid
+    return false
   end
-  
 end

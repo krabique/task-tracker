@@ -1,17 +1,17 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :task, through: :project
-  before_action :task_status_options, only: [:new, :edit]
+  before_action :task_status_options, only: %i[new edit]
 
   def show
     @new_comment = Comment.new(task: @task)
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     if safe_create_task
@@ -34,45 +34,41 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
-
   private
 
   def task_status_options
     @task_status_options = %w[waiting implementation verifying releasing]
   end
-  
+
   def base_permitted_task_params
-    [ :title, :description ]
+    %i[title description]
   end
-  
+
   def authorized_permitted_task_params
-    :user_id if can? :assign_user_to_task, @task || params[:task][:user_id] == current_user.id
+    :user_id if can?(:assign_user_to_task, @task) || params[:task][:user_id] == current_user.id
   end
-  
+
   def valid_status_permitted_task_params
     :status if task_status_options.include? params[:task][:status]
   end
-  
+
   def full_permitted_task_params
-    base_permitted_task_params << 
-      [ authorized_permitted_task_params, valid_status_permitted_task_params ]
+    base_permitted_task_params <<
+      [authorized_permitted_task_params, valid_status_permitted_task_params]
   end
-  
+
   def safe_create_task
-    begin
-      if cannot? :assign_user_to_task, Task
-        @task = @project.tasks.create! task_params.merge(user: current_user)
-      else
-        @task = @project.tasks.create! task_params
-      end
-      return true
-    rescue ActiveRecord::RecordInvalid
-      return false
-    end
-  end  
-  
+    @task = if cannot? :assign_user_to_task, Task
+              @project.tasks.create! task_params.merge(user: current_user)
+            else
+              @project.tasks.create! task_params
+            end
+    return true
+  rescue ActiveRecord::RecordInvalid
+    return false
+  end
+
   def task_params
     params.require(:task).permit(full_permitted_task_params)
   end
-  
 end

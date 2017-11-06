@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :task, through: :project
   load_and_authorize_resource :comment, through: :task
-  
-  def new
-  end
 
-  def edit
-  end
+  def new; end
+
+  def edit; end
 
   def create
     if safe_create_comment
@@ -32,20 +32,16 @@ class CommentsController < ApplicationController
     redirect_to project_task_path(@project, @task), notice: 'Comment was successfully destroyed.'
   end
 
-
   private
-  
+
   def comment_params
     params.require(:comment).permit(:body)
   end
-  
+
   def safe_create_comment
-    begin
-      @comment = @task.comments.create! comment_params.merge(user: current_user)
-      return true
-    rescue ActiveRecord::RecordInvalid
-      return false
-    end     
+    @comment = @task.comments.create! comment_params.merge(user: current_user)
+    return true
+  rescue ActiveRecord::RecordInvalid
+    return false
   end
-  
 end

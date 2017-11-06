@@ -1,0 +1,37 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - test/**/*
+    
+Metrics/AbcSize:
+  Exclude:
+    - db/**/*
+    - app/models/ability.rb
+    - app/controllers/users/registrations_controller.rb
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - config/initializers/*
+    - db/**/*
+Metrics/MethodLength:
+  Max: 10
+  Exclude:
+    - app/models/ability.rb
+    - db/**/*
+
+Style/GuardClause:
+  Exclude:
+    - app/models/ability.rb
+    - app/controllers/home_controller.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - db/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
