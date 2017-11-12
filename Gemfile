@@ -62,22 +62,21 @@ group :development, :test do
   # Automatically generates seeds, but doesn't work properly with HABTM relation
   gem 'rubocop'
   gem 'seed_dump'
-  
+
   # gem 'factory_girl_rails'
   gem 'factory_bot'
   gem 'guard-rspec'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'vcr'
-  gem 'rails-controller-testing'
-
 end
 
 group :test do
-  gem 'webmock'
-  gem 'shoulda-matchers', require: false
   gem 'database_cleaner'
   gem 'faker'
+  gem 'shoulda-matchers', require: false
+  gem 'webmock'
 end
 
 group :development do
