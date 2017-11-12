@@ -1,8 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.4
-  Exclude:
-    - test/**/*
-    
+
 Metrics/AbcSize:
   Exclude:
     - db/**/*
