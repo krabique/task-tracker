@@ -12,5 +12,7 @@ RSpec.describe User, type: :model do
   
   context 'associations' do
     it { should have_and_belong_to_many(:projects) }
+    it { should have_many(:tasks) }
+    it { should have_many(:comments) }
   end
 end
