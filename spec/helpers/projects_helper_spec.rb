@@ -13,11 +13,11 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ProjectsHelper, type: :helper do
-  context '.link_to_task_with_status_color(text, path, status, user_id)' do
+  describe '.link_to_task_with_status_color(text, path, status, user_id)' do
     it 'should return a link to task with the according css class on it' do
       task = create(:task)
       expect(
-        link_to_task_with_status_color(
+        helper.link_to_task_with_status_color(
           task.title,
           project_task_path(task.project, task),
           task.status,
