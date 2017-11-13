@@ -77,6 +77,7 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers', require: false
   gem 'webmock'
+  gem 'simplecov', require: false
 end
 
 group :development do
