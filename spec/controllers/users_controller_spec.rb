@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller do
     context 'for a developer' do
       let(:user) { create(:developer) }  
       
-      it "has a 200 status code" do
+      it "should have a 200 status code" do
         login_with user
         get :show, params: { id: user.id }
         expect(response.status).to eq(200)
@@ -15,7 +15,7 @@ RSpec.describe UsersController, type: :controller do
     context 'for a manager' do
       let(:user) { create(:manager) }  
       
-      it "has a 200 status code" do
+      it "should have a 200 status code" do
         login_with user
         get :show, params: { id: user.id }
         expect(response.status).to eq(200)
