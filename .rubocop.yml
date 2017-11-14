@@ -28,6 +28,7 @@ Metrics/BlockLength:
     - config/**/*
     - db/**/*
     - Guardfile
+    - spec/models/ability_spec.rb
 
 Style/Documentation:
   Enabled: false
