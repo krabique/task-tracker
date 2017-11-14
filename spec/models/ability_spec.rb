@@ -5,8 +5,8 @@ require 'rails_helper'
 require 'cancan/matchers'
 
 RSpec.describe Ability, type: :model do
-  context 'a user with' do
-    context 'anonymous user' do
+  describe 'a user' do
+    context 'with anonymous role (not logged in)' do
       subject(:ability) { Ability.new(user, nil) }
       let(:user) { nil }
 
@@ -14,7 +14,7 @@ RSpec.describe Ability, type: :model do
       it { is_expected.to_not be_able_to(:filter_tasks, Project) }
     end
 
-    context 'manager role' do
+    context 'with manager role' do
       subject(:ability) { Ability.new(user, project) }
       let(:user) { create(:manager) }
 
@@ -55,7 +55,7 @@ RSpec.describe Ability, type: :model do
       end
     end
 
-    context 'developer role' do
+    context 'with developer role' do
       subject(:ability) { Ability.new(user, project) }
       let(:user) { create(:developer) }
 
