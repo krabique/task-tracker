@@ -28,4 +28,13 @@ RSpec.describe HomeController, type: :controller do
       expect(assigns(:projects)).to eq user.projects
     end
   end
+    
+  context 'when user is not logged in' do
+    it "should set @projects to user's projects" do
+      get :index
+
+      expect(response.status).to eq(200)
+      expect(assigns(:projects)).to be nil
+    end
+  end
 end
