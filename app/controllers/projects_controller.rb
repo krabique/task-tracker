@@ -40,8 +40,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :user_id,
-                                    user_ids: [])
+    params.require(:project).permit(:title, :description, user_ids: [])
   end
 
   def safe_create_project

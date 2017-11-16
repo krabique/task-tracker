@@ -29,8 +29,7 @@ Metrics/BlockLength:
     - config/**/*
     - db/**/*
     - Guardfile
-    - spec/models/ability_spec.rb
-    - spec/features/sign_up_roles_spec.rb
+    - spec/**/*
 
 Style/Documentation:
   Enabled: false
