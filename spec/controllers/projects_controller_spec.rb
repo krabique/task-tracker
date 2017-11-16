@@ -53,6 +53,7 @@ RSpec.describe ProjectsController, type: :controller do
           post :create, params: { project: attributes_for(:project_with_users) }
         end.to change(Project, :count).by(1)
       end
+      
       it 'redirects to the project page' do
         post :create, params: { project: attributes_for(:project_with_users) }
         expect(response).to redirect_to Project.last
