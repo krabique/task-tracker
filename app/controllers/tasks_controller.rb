@@ -41,20 +41,18 @@ class TasksController < ApplicationController
   end
 
   def base_permitted_task_params
-    %i[title description]
+    %i[title description status]
   end
 
   def authorized_permitted_task_params
-    :user_id if can?(:assign_user_to_task, @task) || params[:task][:user_id] == current_user.id
-  end
-
-  def valid_status_permitted_task_params
-    :status if task_status_options.include? params[:task][:status]
+    :user_id if 
+      can?(:assign_user_to_task, @task) || 
+      (params[:task][:user_id] == current_user.id && @task.user == current_user)
+      
   end
 
   def full_permitted_task_params
-    base_permitted_task_params <<
-      [authorized_permitted_task_params, valid_status_permitted_task_params]
+    base_permitted_task_params << authorized_permitted_task_params
   end
 
   def safe_create_task
