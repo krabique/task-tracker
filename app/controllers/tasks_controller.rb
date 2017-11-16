@@ -45,10 +45,9 @@ class TasksController < ApplicationController
   end
 
   def authorized_permitted_task_params
-    :user_id if 
-      can?(:assign_user_to_task, @task) || 
+    :user_id if
+      can?(:assign_user_to_task, @task) ||
       (params[:task][:user_id] == current_user.id && @task.user == current_user)
-      
   end
 
   def full_permitted_task_params

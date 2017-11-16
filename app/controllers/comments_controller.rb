@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
 
   def create
     if safe_create_comment
-      redirect_to project_task_path(@project, @task), 
-        notice: 'Comment was successfully created.'
+      redirect_to project_task_path(@project, @task),
+                  notice: 'Comment was successfully created.'
     else
       flash[:alert] = 'There was a problem creating the comment.'
       render :new
@@ -21,8 +21,8 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to project_task_path(@project, @task), 
-        notice: 'Comment was successfully updated.'
+      redirect_to project_task_path(@project, @task),
+                  notice: 'Comment was successfully updated.'
     else
       flash[:alert] = 'There was a problem updating the comment.'
       render :edit
@@ -31,8 +31,8 @@ class CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to project_task_path(@project, @task), 
-      notice: 'Comment was successfully destroyed.'
+    redirect_to project_task_path(@project, @task),
+                notice: 'Comment was successfully destroyed.'
   end
 
   private
