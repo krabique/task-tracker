@@ -11,12 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    if params[:user][:manager_role] != '1'
-      params[:user][:developer_role] = '1'
-    elsif params[:user][:manager_role] == '1' && params[:user][:developer_role] == '1'
-      flash[:alert] = 'Only one role is allowed.'
-      render :new
-    end
+    params[:user][:developer_role] = '1' if params[:user][:manager_role] != '1'
     super
   end
 
