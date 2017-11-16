@@ -6,6 +6,7 @@ Metrics/AbcSize:
     - db/**/*
     - app/models/ability.rb
     - app/controllers/users/registrations_controller.rb
+    - spec/support/controller_helpers.rb
 
 Metrics/LineLength:
   Max: 100

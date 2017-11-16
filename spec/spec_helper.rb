@@ -100,8 +100,9 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
 
-  require 'capybara/rspec'
-  
+  # require 'capybara/rails'
+  # require 'capybara/rspec'
+
   config.include ControllerHelpers, type: :controller
   Warden.test_mode!
 
