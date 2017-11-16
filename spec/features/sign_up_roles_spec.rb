@@ -7,10 +7,12 @@ RSpec.feature 'SignUpRoles', type: :feature do
            'has is a developer role' do
     visit '/users/sign_up'
 
-    fill_in 'user_name', with: 'Names Namie'
-    fill_in 'user_email', with: 'names@namie.com'
-    fill_in 'user_password', with: 'abcd1234'
-    fill_in 'user_password_confirmation', with: 'abcd1234'
+    within('#new_user') do
+      fill_in 'user_name', with: 'Names Namie'
+      fill_in 'user_email', with: 'names@namie.com'
+      fill_in 'user_password', with: 'abcd1234'
+      fill_in 'user_password_confirmation', with: 'abcd1234'
+    end
 
     click_button 'Sign up'
 
@@ -22,12 +24,14 @@ RSpec.feature 'SignUpRoles', type: :feature do
            'has is a manager role' do
     visit '/users/sign_up'
 
-    fill_in 'user_name', with: 'Names Namie'
-    fill_in 'user_email', with: 'names@namie.com'
-    fill_in 'user_password', with: 'abcd1234'
-    fill_in 'user_password_confirmation', with: 'abcd1234'
+    within('#new_user') do
+      fill_in 'user_name', with: 'Names Namie'
+      fill_in 'user_email', with: 'names@namie.com'
+      fill_in 'user_password', with: 'abcd1234'
+      fill_in 'user_password_confirmation', with: 'abcd1234'
 
-    check 'user_manager_role'
+      check 'user_manager_role'
+    end
 
     click_button 'Sign up'
 
