@@ -99,6 +99,8 @@ RSpec.describe TasksController, type: :controller do
       end
 
       context 'not as a member of the project' do
+        let(:project) { create(:project) }
+        
         it 'should not be able to create a task for this project' do
           expect do
             post :create, params:
