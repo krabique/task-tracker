@@ -22,6 +22,4 @@ deploy:
   api_key:
     secure: C3vGdqLuCGvwItOseLoOebhPsiE9leKNsBbc1Rr8tWtIB9xBwOKYRSsLr04uV0p+e7BFq2pW6S9kTzL3uOz+fx3Hras6vl7Wcml1XPLH0fApyj3+hMcckvf/toRT9Wd4pyhtHdVqjVh15coSMIaik8jf9wxOlzRY240sT29+95jhiDC/kamrUPNey9gMxS4DICU5/cteZwhtEBa7zSSFhFLBWEqSQhLlFeEIfHbN2cfI3bOLPGtzCHCcBD3O2ggGRF993WeLWbK6RkEI68OqCwfA2faVBFsvs5LnfkaYtxRxUADRt9jecjZt8mY76duFz4W4UmTR5HCglRTEOh9DGucfF/4GJC6V6L/YEUQ/yutilinGxtSYuq0BF7Pzok+0dJdJPwO+2Qrnp9Xn/CFtXw8s3+xPUhVLw/nBABG92Q4fDA4kLTEkQmYIzAZxWzguUwaT6VOUCkhSqmsP0nL11R5/8V+1DVf7lUSO3zMccbAyyPW2A4/vqAaYrfGswM2XCajgfDKXwI737NDk2LOEgreDA0pZRc1ZONyhfL4DqIVXrqY8tldRFvk7uAxzXJ9JwHN51Op2admMNrg0BHh0Qw+c+IuVrjR0JVlsTguCHpyRFkzpdZVcycFZoSycH88gB3vPYzk5itJ5QZB1e+kwVPndVHd/C7BQd9uFbdovQqM=
   on: master
-  run: "heroku pg:reset --confirm agile-cove-39191"
   run: "rake db:migrate"
-  run: "rake db:seed"
