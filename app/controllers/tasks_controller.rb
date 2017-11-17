@@ -3,7 +3,7 @@
 class TasksController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :task, through: :project
-  before_action :task_status_options, only: %i[new edit]
+  before_action :task_status_options, only: %i[new edit create update]
 
   def show
     @new_comment = Comment.new(task: @task)
@@ -22,6 +22,9 @@ class TasksController < ApplicationController
   end
 
   def update
+    params[:task][:user_id] = nil unless
+      params[:task][:user_id] && can?(:assign_user_to_task, @task)
+
     if @task.update(task_params)
       redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
@@ -56,10 +59,11 @@ class TasksController < ApplicationController
 
   def safe_create_task
     @task = if cannot? :assign_user_to_task, Task
-              @project.tasks.create! task_params.merge(user: current_user)
+              @project.tasks.new task_params.merge(user: current_user)
             else
-              @project.tasks.create! task_params
+              @project.tasks.new task_params
             end
+    @task.save!
     return true
   rescue ActiveRecord::RecordInvalid
     return false
