@@ -1,0 +1,19 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=3b6f6036b5a3ffcbdaf16855f9e88ae356799de20d0fed80d9fed0bb17bb8275
+language: ruby
+rvm:
+ - 2.4.2
+services:
+ - postgresql
+before_script:
+  - psql -c 'create database task-tracker_test;' -U postgres
+  - bundle exec rake db:migrate
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - bundle exec rake spec
+  - bundle exec rake rubocop
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
