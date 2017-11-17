@@ -195,11 +195,11 @@ RSpec.describe ProjectsController, type: :controller do
       delete :destroy, params: { id: project.id }
       expect(response).to redirect_to projects_url
     end
-    
+
     context "not as the project's owner" do
       let(:project) { create(:project) }
-      
-      it "should not be able to delete the project" do
+
+      it 'should not be able to delete the project' do
         expect do
           delete :destroy, params: { id: project.id }
         end.to raise_error CanCan::AccessDenied

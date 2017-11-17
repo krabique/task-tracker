@@ -100,7 +100,7 @@ RSpec.describe TasksController, type: :controller do
 
       context 'not as a member of the project' do
         let(:project) { create(:project) }
-        
+
         it 'should not be able to create a task for this project' do
           expect do
             post :create, params:
@@ -110,21 +110,21 @@ RSpec.describe TasksController, type: :controller do
       end
     end
   end
-  
+
   describe 'GET #edit' do
     it 'renders the :edit template' do
       get :edit, params: { id: task.id, project_id: project.id }
       expect(response).to render_template :edit
     end
   end
-  
+
   describe 'PUT #update' do
     context 'with valid attributes' do
       it "changes the task's attributes and saves it to the database" do
         title = Faker::HarryPotter.book
         description = Faker::HarryPotter.quote
         status = attributes_for(:task)[:status]
-        
+
         put :update, params: {
           id: task.id,
           project_id: project.id,
@@ -143,7 +143,7 @@ RSpec.describe TasksController, type: :controller do
         expect(
           Nokogiri::HTML.parse(assigns(:task).description).text
         ).to eq description
-        
+
         expect(
           Nokogiri::HTML.parse(assigns(:task).status).text
         ).to eq status
@@ -182,12 +182,12 @@ RSpec.describe TasksController, type: :controller do
         expect(
           Nokogiri::HTML.parse(assigns(:task).description).text
         ).to eq initial_description
-        
+
         expect(
           Nokogiri::HTML.parse(assigns(:task).status).text
         ).to eq initial_status
       end
-      
+
       it 're-renders the :new template' do
         put :update, params: {
           id: task.id,
@@ -200,8 +200,8 @@ RSpec.describe TasksController, type: :controller do
 
         expect(response).to render_template :edit
       end
-    end    
-    
+    end
+
     context 'as a developer' do
       let(:user) { create(:developer) }
 
@@ -227,11 +227,11 @@ RSpec.describe TasksController, type: :controller do
           expect(
             Nokogiri::HTML.parse(assigns(:task).title).text
           ).to eq title
-  
+
           expect(
             Nokogiri::HTML.parse(assigns(:task).description).text
           ).to eq description
-          
+
           expect(
             Nokogiri::HTML.parse(assigns(:task).status).text
           ).to eq status
@@ -240,39 +240,38 @@ RSpec.describe TasksController, type: :controller do
         it 'should not be able to update a task for this project with ' \
           "a different user as the task's owner" do
           post :update, params:
-            { id: task.id, 
-              project_id: project.id, 
+            { id: task.id,
+              project_id: project.id,
               task: attributes_for(:task, user: create(:user)) }
 
           assigns(:task).reload
 
           expect(assigns(:task).user).to eq user
         end
-        
+
         context 'not on his own task' do
           let(:task) { create(:task) }
-          
+
           it 'should not be able to update it' do
-            
           end
         end
       end
 
       context 'not as a member of the project' do
         let(:project) { create(:project) }
-        
+
         it 'should not be able to update a task for this project' do
           expect do
             post :update, params:
-              { id: task.id, 
-                project_id: project.id, 
+              { id: task.id,
+                project_id: project.id,
                 task: attributes_for(:task) }
           end.to raise_error CanCan::AccessDenied
         end
       end
     end
   end
-  
+
   describe 'DELETE #destroy' do
     let!(:task) { create(:task, user: user, project: project) }
 
@@ -286,22 +285,22 @@ RSpec.describe TasksController, type: :controller do
       delete :destroy, params: { id: task.id, project_id: project.id }
       expect(response).to redirect_to project
     end
-    
+
     context "not as the project's owner" do
       let(:project) { create(:project) }
-      
-      it "should not be able to delete the project" do
+
+      it 'should not be able to delete the project' do
         expect do
           delete :destroy, params: { id: task.id, project_id: project.id }
         end.to raise_error CanCan::AccessDenied
       end
     end
-    
+
     context 'as a developer' do
       let(:user) { create(:developer) }
-      
+
       context "not as the task's owner" do
-        it "should not be able to delete the project" do
+        it 'should not be able to delete the project' do
           expect do
             delete :destroy, params: { id: task.id, project_id: project.id }
           end.to raise_error CanCan::AccessDenied
