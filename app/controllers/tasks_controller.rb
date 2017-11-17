@@ -15,7 +15,8 @@ class TasksController < ApplicationController
 
   def create
     if safe_create_task
-      redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
+      redirect_to project_task_path(@project, @task),
+                  notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -26,7 +27,8 @@ class TasksController < ApplicationController
       params[:task][:user_id] && can?(:assign_user_to_task, @task)
 
     if @task.update(task_params)
-      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
+      redirect_to project_task_path(@project, @task),
+                  notice: 'Task was successfully updated.'
     else
       render :edit
     end

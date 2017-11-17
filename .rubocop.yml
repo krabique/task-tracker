@@ -9,7 +9,6 @@ Metrics/AbcSize:
     - spec/support/controller_helpers.rb
 
 Metrics/LineLength:
-  Max: 100
   Exclude:
     - config/initializers/*
     - db/**/*

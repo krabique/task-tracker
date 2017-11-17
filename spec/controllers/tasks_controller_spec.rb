@@ -90,7 +90,8 @@ RSpec.describe TasksController, type: :controller do
         it 'should not be able to create a task for this project with ' \
            "a different user as the task's owner" do
           post :create, params:
-            { project_id: project.id, task: attributes_for(:task, user: create(:user)) }
+            { project_id: project.id, task:
+              attributes_for(:task, user: create(:user)) }
 
           assigns(:task).reload
 
