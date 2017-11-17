@@ -149,7 +149,7 @@ RSpec.describe TasksController, type: :controller do
         ).to eq status
       end
 
-      it 'redirects to the project page' do
+      it 'redirects to the task page' do
         put :update, params:
           { project_id: project.id, id: task.id, task: attributes_for(:task) }
         expect(response).to redirect_to(
