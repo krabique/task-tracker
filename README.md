@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/krabique48/task-tracker.svg?branch=master)](https://travis-ci.org/krabique48/task-tracker)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6b506bfb87fe7ff36d25/maintainability)](https://codeclimate.com/github/krabique48/task-tracker/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/6b506bfb87fe7ff36d25/test_coverage)](https://codeclimate.com/github/krabique48/task-tracker/test_coverage)
+
 # Task Tracker
 
 The one and only, amaaazing TASK TRACKER! \*crowd chanting\*
