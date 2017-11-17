@@ -70,3 +70,11 @@ quackerquacker
 User.last.update!(confirmed_at: Time.now)
 ```
 to approve your user's email and be able to log in.
+
+## License
+
+MIT
+
+## Authors
+
+* **Oleg Larkin** - *Initial work* - [krabique48](https://github.com/krabique48) (krabique48@gmail.com)
