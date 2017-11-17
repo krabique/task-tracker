@@ -7,5 +7,11 @@ FactoryBot.define do
     status            %w[waiting implementation verifying releasing].sample
     user
     project
+
+    factory :invalid_task do
+      title nil
+      description nil
+      status 'lol'
+    end
   end
 end
