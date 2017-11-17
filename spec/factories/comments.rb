@@ -7,9 +7,3 @@ FactoryBot.define do
     user
   end
 end
-
-# p ' '
-# p comment
-# p task
-# p project
-# p user
