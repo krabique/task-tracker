@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings specified here will take precedence over those
+  # in config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -56,4 +57,7 @@ Rails.application.configure do
 
   # For web-console
   config.web_console.whitelisted_ips = %w[0.0.0.0/0 ::/0]
+
+  config.action_mailer.default_url_options =
+    { host: 'task-tracker-xen0n48.c9users.io', port: 80 }
 end

@@ -6,8 +6,9 @@
     <%= f.input :description %>
     <%= f.input :status, :collection => @task_status_options %>
     
-    <%= render 'form_developers', f: f, task: task if can? :assign_user_to_task, task %>
-  
+    <%= render('form_developers', f: f, task: task) if 
+      (can? :assign_user_to_task, task)
+    %>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

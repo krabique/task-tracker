@@ -15,29 +15,31 @@ users_info.each do |info|
 end
 
 Project.create!([
-                  { title: 'Being a good kitty', description: "I should be a good kitty for my mistress, and make this stupid mouse go away! Spike Dog will help me... I hope he won't eat me afterwards...", user_id: 1 },
-                  { title: 'Quacker Duck birthday', description: "Let's celebrate, my friends! (I promise not to eat you guys, honest.)", user_id: 1 },
-                  { title: 'Empty project', description: 'Totally desolated.', user_id: 1 },
-                  { title: 'A lonely project of mine', description: 'Maybe Quacker Duck will join me in my misery...', user_id: 5 }
-                ])
-Task.create!([
-               { title: 'Catch the mouse!', description: 'WE GOTA DO IT, SPIKE', status: 'implementation', user_id: 3, project_id: 1 },
-               { title: 'Bake the cake', description: "Y'know what to do, we need a really good cake this year!", status: 'implementation', user_id: 2, project_id: 2 },
-               { title: 'Pump up the balloons', description: 'We need a total of 10 balloons for the party.', status: 'waiting', user_id: 3, project_id: 2 },
-               { title: 'Empty task', description: 'With nothing to do and no developer assigned', status: 'waiting', user_id: nil, project_id: 2 },
-               { title: 'Be miserable', description: 'Till the end of the world.', status: 'releasing', user_id: nil, project_id: 4 }
-             ])
-Comment.create!([
-                  { body: "What's the plan, Spike?? Think we should just chase him (is Jerry even a he?) down??", task_id: 1, user_id: 1 },
-                  { body: "Jerry, you do it, and I'll check that you won't mess anything up!", task_id: 2, user_id: 1 },
-                  { body: 'PUMP IT BABY', task_id: 3, user_id: 1 },
-                  { body: "Omg, Tom, you're a joke. I'll handle it.", task_id: 2, user_id: 2 },
-                  { body: 'HEL YEA MEN LETZ DU IT', task_id: 1, user_id: 3 },
-                  { body: "Wooohooo, ballooons, I love 'em!", task_id: 3, user_id: 4 },
-                  { body: 'You guys are so cute <3', task_id: 3, user_id: 4 },
-                  { body: 'T_T', task_id: 5, user_id: 5 }
+                  { title: 'Being a good kitty', description: "I should be a good kitty for my mistress, and make this stupid mouse go away! Spike Dog will help me... I hope he won't eat me afterwards...", user: User.find_by_id(1) },
+                  { title: 'Quacker Duck birthday', description: "Let's celebrate, my friends! (I promise not to eat you guys, honest.)", user: User.find_by_id(1) },
+                  { title: 'Empty project', description: 'Totally desolated.', user: User.find_by_id(1) },
+                  { title: 'A lonely project of mine', description: 'Maybe Quacker Duck will join me in my misery...', user: User.find_by_id(5) }
                 ])
 
-Project.find_by_id(1).update!('user_ids' => ['3'])
-Project.find_by_id(2).update!('user_ids' => %w[2 3 4])
-Project.find_by_id(4).update!('user_ids' => ['4'])
+Task.create!([
+               { title: 'Catch the mouse!', description: 'WE GOTA DO IT, SPIKE', status: 'implementation', user: User.find_by_id(3), project: Project.find_by_id(1) },
+               { title: 'Bake the cake', description: "Y'know what to do, we need a really good cake this year!", status: 'implementation', user: User.find_by_id(2), project: Project.find_by_id(2) },
+               { title: 'Pump up the balloons', description: 'We need a total of 10 balloons for the party.', status: 'waiting', user: User.find_by_id(3), project: Project.find_by_id(2) },
+               { title: 'Empty task', description: 'With nothing to do and no developer assigned', status: 'waiting', user: nil, project: Project.find_by_id(2) },
+               { title: 'Be miserable', description: 'Till the end of the world.', status: 'releasing', user: nil, project: Project.find_by_id(4) }
+             ])
+
+Comment.create!([
+                  { body: "What's the plan, Spike?? Think we should just chase him (is Jerry even a he?) down??", task: Task.find_by_id(1), user: User.find_by_id(1) },
+                  { body: "Jerry, you do it, and I'll check that you won't mess anything up!", task: Task.find_by_id(2), user: User.find_by_id(1) },
+                  { body: 'PUMP IT BABY', task: Task.find_by_id(3), user: User.find_by_id(1) },
+                  { body: "Omg, Tom, you're a joke. I'll handle it.", task: Task.find_by_id(2), user: User.find_by_id(2) },
+                  { body: 'HEL YEA MEN LETZ DU IT', task: Task.find_by_id(1), user: User.find_by_id(3) },
+                  { body: "Wooohooo, ballooons, I love 'em!", task: Task.find_by_id(3), user: User.find_by_id(4) },
+                  { body: 'You guys are so cute <3', task: Task.find_by_id(3), user: User.find_by_id(4) },
+                  { body: 'T_T', task: Task.find_by_id(5), user: User.find_by_id(5) }
+                ])
+
+Project.find_by_id(1).update!('users' => [User.find_by_id(3)])
+Project.find_by_id(2).update!('users' => [User.find_by_id(2), User.find_by_id(3), User.find_by_id(4)])
+Project.find_by_id(4).update!('users' => [User.find_by_id(3)])

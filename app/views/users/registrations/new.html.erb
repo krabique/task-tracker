@@ -8,7 +8,11 @@
   <%= f.input :email %>
   <%= f.input :password, autocomplete: "off" %>
   <%= f.input :password_confirmation, autocomplete: "off" %>
-  <%= f.input :manager_role, label: (raw "&nbsp;I am a <strong>Manager</strong>!") %>
+  <%= f.input :manager_role,
+    label: (raw "&nbsp;I am a <strong>Manager</strong>!") %>
+  <%= f.input :developer_role,
+    input_html: { style: 'display:none;'},
+    label_html: { style: 'display:none;'} %>
 
   <%= f.button :submit, 'Sign up' %>
 <% end %>

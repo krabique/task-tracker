@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
+    registrations: 'users/registrations',
     sessions: 'users/sessions',
     passwords: 'users/passwords',
-    registrations: 'users/registrations'
+    confirmations: 'users/confirmations'
   }
 
   resources :users, only: [:show]

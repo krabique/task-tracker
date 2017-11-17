@@ -13,6 +13,7 @@ class Ability
       can :manage, Task, project: { user_id: user.id }
       can :manage, Comment, task: { project: { user_id: user.id } }
       cannot :filter_tasks, Project
+      can :assign_user_to_task, Task, project: { user_id: user.id }
     end
 
     if user.developer_role?

@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :projects
   has_many :tasks
   has_many :comments
+
+  validates :name, presence: true
+
+  validates_with RoleValidator
 end

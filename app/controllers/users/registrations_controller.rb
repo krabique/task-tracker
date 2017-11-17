@@ -11,12 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    if params[:user][:manager_role] != '1'
-      params[:user][:developer_role] = '1'
-    elsif params[:user][:manager_role] == '1' && params[:user][:developer_role] == '1'
-      flash[:alert] = 'Only one role is allowed.'
-      render :new
-    end
+    params[:user][:developer_role] = '1' if params[:user][:manager_role] != '1'
     super
   end
 
@@ -48,8 +43,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up,
-                                      keys: %i[attribute name manager_role developer_role])
+    devise_parameter_sanitizer.permit(
+      :sign_up, keys: %i[name manager_role developer_role]
+    )
   end
 
   # If you have extra params to permit, append them to the sanitizer.

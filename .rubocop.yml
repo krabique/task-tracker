@@ -1,16 +1,16 @@
 AllCops:
   TargetRubyVersion: 2.4
   Exclude:
-    - test/**/*
-    
+    - db/schema.rb
+    - vendor/**/*
 Metrics/AbcSize:
   Exclude:
     - db/**/*
     - app/models/ability.rb
     - app/controllers/users/registrations_controller.rb
+    - spec/support/controller_helpers.rb
 
 Metrics/LineLength:
-  Max: 100
   Exclude:
     - config/initializers/*
     - db/**/*
@@ -29,6 +29,8 @@ Metrics/BlockLength:
   Exclude:
     - config/**/*
     - db/**/*
+    - Guardfile
+    - spec/**/*
 
 Style/Documentation:
   Enabled: false

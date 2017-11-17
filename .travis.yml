@@ -1,0 +1,25 @@
+env:
+  global:
+  - CC_TEST_REPORTER_ID=3b6f6036b5a3ffcbdaf16855f9e88ae356799de20d0fed80d9fed0bb17bb8275
+language: ruby
+rvm:
+  - 2.4.2
+services:
+  - postgresql
+before_script:
+  - psql -c "create database tasktracker_test;" -U postgres
+  - bundle exec rake db:migrate
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - "./cc-test-reporter before-build"
+script:
+  - bundle exec rake spec
+  - bundle exec rubocop task-tracker/
+after_script:
+  - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+deploy:
+  provider: heroku
+  api_key:
+    secure: C3vGdqLuCGvwItOseLoOebhPsiE9leKNsBbc1Rr8tWtIB9xBwOKYRSsLr04uV0p+e7BFq2pW6S9kTzL3uOz+fx3Hras6vl7Wcml1XPLH0fApyj3+hMcckvf/toRT9Wd4pyhtHdVqjVh15coSMIaik8jf9wxOlzRY240sT29+95jhiDC/kamrUPNey9gMxS4DICU5/cteZwhtEBa7zSSFhFLBWEqSQhLlFeEIfHbN2cfI3bOLPGtzCHCcBD3O2ggGRF993WeLWbK6RkEI68OqCwfA2faVBFsvs5LnfkaYtxRxUADRt9jecjZt8mY76duFz4W4UmTR5HCglRTEOh9DGucfF/4GJC6V6L/YEUQ/yutilinGxtSYuq0BF7Pzok+0dJdJPwO+2Qrnp9Xn/CFtXw8s3+xPUhVLw/nBABG92Q4fDA4kLTEkQmYIzAZxWzguUwaT6VOUCkhSqmsP0nL11R5/8V+1DVf7lUSO3zMccbAyyPW2A4/vqAaYrfGswM2XCajgfDKXwI737NDk2LOEgreDA0pZRc1ZONyhfL4DqIVXrqY8tldRFvk7uAxzXJ9JwHN51Op2admMNrg0BHh0Qw+c+IuVrjR0JVlsTguCHpyRFkzpdZVcycFZoSycH88gB3vPYzk5itJ5QZB1e+kwVPndVHd/C7BQd9uFbdovQqM=
+  on: master
+  run: "rake db:migrate"
