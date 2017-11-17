@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: task-tracker_production
-  username: task-tracker
-  password: <%= ENV['TASK-TRACKER_DATABASE_PASSWORD'] %>
+  # username: task-tracker
+  # password: <%= ENV['TASK-TRACKER_DATABASE_PASSWORD'] %>
