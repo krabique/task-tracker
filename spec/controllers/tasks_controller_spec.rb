@@ -289,7 +289,7 @@ RSpec.describe TasksController, type: :controller do
     context "not as the project's owner" do
       let(:project) { create(:project) }
 
-      it 'should not be able to delete the project' do
+      it 'should not be able to delete the task' do
         expect do
           delete :destroy, params: { id: task.id, project_id: project.id }
         end.to raise_error CanCan::AccessDenied
@@ -300,7 +300,7 @@ RSpec.describe TasksController, type: :controller do
       let(:user) { create(:developer) }
 
       context "not as the task's owner" do
-        it 'should not be able to delete the project' do
+        it 'should not be able to delete the task' do
           expect do
             delete :destroy, params: { id: task.id, project_id: project.id }
           end.to raise_error CanCan::AccessDenied
